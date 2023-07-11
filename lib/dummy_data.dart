@@ -53,4 +53,14 @@ const dummyCategories = [
     title: 'Summer',
     color: Colors.teal,
   ),
+  Category(
+    id: 'c11',
+    title: 'African',
+    color: Colors.indigoAccent,
+  ),
+  Category(
+    id: 'c12',
+    title: 'Chicken Tandoori',
+    color: Colors.lime,
+  ),
 ];
