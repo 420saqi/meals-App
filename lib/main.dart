@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mealsapp/category_meals_screen.dart';
 import 'package:mealsapp/category_screen.dart';
 
 void main() {
@@ -6,6 +7,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  static const categoryMealsScreen = 'category-meals';
   const MyApp({super.key});
 
   // This widget is the root of your application.
@@ -24,7 +26,11 @@ class MyApp extends StatelessWidget {
         ),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const CategoriesScreen(),
+      // home: const CategoriesScreen(),
+      routes: {
+        '/' :(context) => const CategoriesScreen(),// default route
+        'category-meals': (context) => const CategoryMealScreen(),
+      },
     );
   }
 }
