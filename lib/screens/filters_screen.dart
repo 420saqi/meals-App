@@ -3,6 +3,9 @@ import 'package:mealsapp/widget/main_drawer_for_tabBar.dart';
 
 class FiltersScreen extends StatefulWidget {
 static const filtersRouteName = 'filters-screen';
+final Function getFilters;
+final currentFilters;
+FiltersScreen(this.getFilters, this.currentFilters);
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
@@ -10,13 +13,18 @@ static const filtersRouteName = 'filters-screen';
 
 class _FiltersScreenState extends State<FiltersScreen> {
 var _gluttenFree =false;
-
 var _lactoseFree = false ;
-
 var _vegan = false;
-
 var _vegetarian =false;
 
+@override
+  void initState() {
+    _gluttenFree = widget.currentFilters['gluten'];
+    _lactoseFree = widget.currentFilters['lactose'];
+    _vegan = widget.currentFilters['vegan'];
+    _vegetarian = widget.currentFilters['vegetarian'];
+    super.initState();
+  }
 
 Widget buildSwitchListTile(
     String title,
@@ -35,7 +43,24 @@ Widget buildSwitchListTile(
 @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Filters'),),
+      appBar: AppBar(title: const Text('Filters'),
+      actions: [
+        // IconButton(onPressed: widget.getFilters, icon: Icon(Icons.save)),
+        TextButton(onPressed: () {
+          final selectedFilters={
+            'gluten': _gluttenFree,
+            'lactose' : _lactoseFree,
+            'vegan' : _vegan,
+            'vegetarian' :_vegetarian,
+          };
+          widget.getFilters(selectedFilters);
+        }, child: Text('Save',style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 20
+        ),),)
+      ],
+      ),
         drawer: MainDrawer(),
         body:Column(
           children: [
