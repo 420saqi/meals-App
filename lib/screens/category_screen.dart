@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mealsapp/widget/category_item.dart';
 import 'package:mealsapp/dummy_data.dart';
+import 'package:mealsapp/widget/main_drawer_for_tabBar.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -8,9 +9,11 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade400,
       appBar: AppBar(
         title: const Text('DeliMeals'),
       ),
+      drawer: MainDrawer(),
       body: GridView(
         padding: const EdgeInsets.all(10),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

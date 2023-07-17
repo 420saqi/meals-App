@@ -81,7 +81,13 @@ borderRadius: BorderRadius.circular(10),
           ),),
           SizedBox(height: 5,),
         ],),
-      )
+      ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: (){
+        Navigator.of(context).pop(mealsId);
+      },
+      child: const Icon(Icons.delete),
+    ),
     );
   }
 }

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:mealsapp/models/meals.dart';
 import 'package:mealsapp/screens/meals_details_screen.dart';
@@ -9,7 +10,7 @@ class MealsItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-
+  final Function removeItem;
   MealsItem({
     required this.id,
     required this.title,
@@ -17,6 +18,7 @@ class MealsItem extends StatelessWidget {
     required this.duration,
     required this.complexity,
     required this.affordability,
+    required this.removeItem,
   });
 
 
@@ -53,7 +55,12 @@ class MealsItem extends StatelessWidget {
     Navigator.of(context).pushNamed(
         MealsDetailScreen.mealsScreenRoute,
     arguments: id,
-    );
+    ).then((resultfromPop){
+    if(resultfromPop != null)
+      {
+        removeItem(resultfromPop);
+      }
+    });
   }
   @override
   Widget build(BuildContext context) {

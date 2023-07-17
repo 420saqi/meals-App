@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mealsapp/screens/category_screen.dart';
 import 'package:mealsapp/screens/favourite_screen.dart';
+import 'package:mealsapp/widget/main_drawer_for_tabBar.dart';
 
 class TabsBarScreen extends StatefulWidget {
   const TabsBarScreen({super.key});
