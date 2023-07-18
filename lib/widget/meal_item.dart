@@ -10,15 +10,13 @@ class MealsItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeItem;
-  MealsItem({
+  const MealsItem({super.key,
     required this.id,
     required this.title,
     required this.imageUrl,
     required this.duration,
     required this.complexity,
     required this.affordability,
-    required this.removeItem,
   });
 
 
@@ -58,7 +56,6 @@ class MealsItem extends StatelessWidget {
     ).then((resultfromPop){
     if(resultfromPop != null)
       {
-        removeItem(resultfromPop);
       }
     });
   }
@@ -93,10 +90,10 @@ class MealsItem extends StatelessWidget {
                   bottom: 20,
                     right: 0,
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       width: 280,
                       color: Colors.black54,
-                      child: Text(title, style: TextStyle(
+                      child: Text(title, style:const TextStyle(
                   fontSize: 25,
                   color: Colors.white
                 ),),

@@ -13,7 +13,7 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('DeliMeals'),
       ),
-      drawer: MainDrawer(),
+      drawer:const MainDrawer(),
       body: GridView(
         padding: const EdgeInsets.all(10),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

@@ -1,22 +1,28 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mealsapp/screens/category_screen.dart';
 import 'package:mealsapp/screens/favourite_screen.dart';
-import 'package:mealsapp/widget/main_drawer_for_tabBar.dart';
+
+import '../models/meals.dart';
 
 class TabsBarScreen extends StatefulWidget {
-  const TabsBarScreen({super.key});
-
+  const TabsBarScreen({super.key,required this.favouriteMeal});
+  final List<Meal> favouriteMeal;
   @override
   State<TabsBarScreen> createState() => _TabsBarScreenState();
 }
 
 class _TabsBarScreenState extends State<TabsBarScreen> {
 
-  final tabBarItems=[
-    CategoriesScreen(),
-    FavouriteScreen(),
-  ];
+  late var tabBarItems;
+
+  @override
+  void initState() {
+    tabBarItems=[
+    const CategoriesScreen(),
+      FavouriteScreen(favouriteMeal: widget.favouriteMeal),
+    ];
+    super.initState();
+  }
 
   int selectedIndex=0;
   void selectedItem(index){
@@ -34,7 +40,7 @@ class _TabsBarScreenState extends State<TabsBarScreen> {
         backgroundColor: Colors.deepPurple,
         onTap: selectedItem,
         currentIndex: selectedIndex,
-        items: [
+        items: const[
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.category,

@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mealsapp/widget/main_drawer_for_tabBar.dart';
-
 class FiltersScreen extends StatefulWidget {
 static const filtersRouteName = 'filters-screen';
 final Function getFilters;
 final currentFilters;
-FiltersScreen(this.getFilters, this.currentFilters);
-
+const FiltersScreen(this.getFilters, this.currentFilters, {super.key});
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
 }
-
 class _FiltersScreenState extends State<FiltersScreen> {
 var _gluttenFree =false;
 var _lactoseFree = false ;
 var _vegan = false;
 var _vegetarian =false;
-
 @override
   void initState() {
     _gluttenFree = widget.currentFilters['gluten'];
@@ -25,7 +21,6 @@ var _vegetarian =false;
     _vegetarian = widget.currentFilters['vegetarian'];
     super.initState();
   }
-
 Widget buildSwitchListTile(
     String title,
     String desc ,
@@ -39,7 +34,6 @@ Widget buildSwitchListTile(
     subtitle: Text(desc),
   );
 }
-
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,26 +48,25 @@ Widget buildSwitchListTile(
             'vegetarian' :_vegetarian,
           };
           widget.getFilters(selectedFilters);
-        }, child: Text('Save',style: TextStyle(
+        }, child:const Text('Save',style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 20
         ),),)
       ],
       ),
-        drawer: MainDrawer(),
+        drawer: const MainDrawer(),
         body:Column(
           children: [
             Container(
               padding:const EdgeInsets.all(10),
-              child: Text('Adjust Your Meal Selection',
-            style: TextStyle(
+              child:const Text('Adjust Your Meal Selection',
+            style:TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             ),
             ),
-
             buildSwitchListTile(
                 'Gluten-Free',
                 'Only include Glutten-Free Meals',
@@ -82,10 +75,7 @@ Widget buildSwitchListTile(
                         _gluttenFree =newValue;
                       });
                     },
-
                 _gluttenFree),
-
-
             buildSwitchListTile(
                 'Lactose-Free',
                 'Only include Lactose-Free Meals',
@@ -103,22 +93,16 @@ Widget buildSwitchListTile(
                     _vegan =newValue;
                   });
                 },
-
                 _vegan),
-
             buildSwitchListTile(
                 'Vegetarian',
                 'Only include Vegetarian Meals',
                     (newValue){
                   setState(() {
-                    print(_vegetarian);
                     _vegetarian =newValue;
-                    print(_vegetarian);
                   });
                 },
-
                 _vegetarian),
-
           ],
         ),
     );

@@ -59,6 +59,28 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  final List<Meal> _favouriteMeal=[];
+
+void _toogleFavourite(String mealId) {
+  final existingIndex = _favouriteMeal.indexWhere((meal) => meal.id == mealId);
+  if (existingIndex >= 0) {
+    _favouriteMeal.removeAt(existingIndex);
+    setState(() {
+
+    });
+  }
+  else
+    {
+      _favouriteMeal.add(dummyMeals.firstWhere((meal)=> meal.id== mealId)) ;
+      setState(() {
+      });
+    }
+}
+
+bool isMealFavourite(String id)
+{
+  return _favouriteMeal.any((meal)=>meal.id== id);
+}
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -73,9 +95,9 @@ class _MyAppState extends State<MyApp> {
       ),
       // home: const CategoriesScreen(),
       routes: {
-        '/': (context) => const TabsBarScreen(), // default route
+        '/': (context) =>  TabsBarScreen(favouriteMeal: _favouriteMeal), // default route
         'category-meals': (context) =>CategoryMealScreen(availableMeals: availableMeals),
-        MealsDetailScreen.mealsScreenRoute: (context) => MealsDetailScreen(),
+        MealsDetailScreen.mealsScreenRoute: (context) => MealsDetailScreen(_toogleFavourite, isMealFavourite),
         FiltersScreen.filtersRouteName :(context) =>  FiltersScreen(_setFilters, _filters),
       },
 
@@ -84,7 +106,6 @@ class _MyAppState extends State<MyApp> {
       // CategoriesScreen
 
       onGenerateRoute: (settings) {
-        print(settings.arguments);
         return MaterialPageRoute(
           builder: (context) => const CategoriesScreen(),
         );
@@ -93,7 +114,7 @@ class _MyAppState extends State<MyApp> {
       // In case the route is not set in routes section and nor the
       // onGenerateRoute is set then onUnknowRoute will get executed
       onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (context) => CategoriesScreen());
+        return MaterialPageRoute(builder: (context) =>const CategoriesScreen());
       },
     );
   }

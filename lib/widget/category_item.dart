@@ -6,7 +6,7 @@ class CategoryItem extends StatelessWidget {
   final String itemId;
   final Color itemColor;
 
-  const CategoryItem({
+  const CategoryItem({super.key,
     required this.itemId,
     required this.itemTitle,
     required this.itemColor,
